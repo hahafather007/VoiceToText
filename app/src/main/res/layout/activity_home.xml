@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.hahafather007.voicetotext.viewmodel.NoteViewModel" />
+
+        <variable
+            name="activity"
+            type="com.hahafather007.voicetotext.view.HomeActivity" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f7f7f7">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:itemLayout="@{@layout/item_voice_note}"
+            app:items="@{viewModel.notes}"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:onBindItem="@{activity::onBindItem}"
+            tools:listitem="@layout/item_voice_note" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:onClick="@{() -> activity.newsNote()}"
+            android:src="@drawable/btn_plus"
+            app:backgroundTint="#1C86EE" />
+    </FrameLayout>
+</layout>
