@@ -7,6 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    buildToolsVersion '28.0.1'
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.hahafather007.voicetotext"
@@ -41,9 +42,9 @@ kapt {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation files('libs/MSC.jar', 'libs/Sunflower.jar')
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/MSC.jar')
+    implementation files('libs/Sunflower.jar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
@@ -73,7 +74,7 @@ dependencies {
 
     implementation 'com.annimon:stream:1.1.8'
 
-    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+    implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
 
     implementation('me.drakeet.multitype:multitype:3.3.0') {
         exclude group: 'com.android.support'
