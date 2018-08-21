@@ -10,6 +10,8 @@ import com.iflytek.cloud.SpeechConstant
 import com.iflytek.cloud.SpeechUtility
 import com.raizlabs.android.dbflow.config.FlowConfig
 import com.raizlabs.android.dbflow.config.FlowManager
+import io.reactivex.internal.functions.Functions
+import io.reactivex.plugins.RxJavaPlugins
 
 class VoiceApp : Application() {
     override fun onCreate() {
@@ -19,6 +21,7 @@ class VoiceApp : Application() {
 
         FlowManager.init(FlowConfig.builder(this).build())
         SpeechUtility.createUtility(this, "${SpeechConstant.APPID}=5a9e6792")
+        RxJavaPlugins.setErrorHandler(Functions.emptyConsumer())
         AndroidAudioConverter.load(this, object : ILoadCallback {
             override fun onSuccess() {
                 "load成功！！！".log()

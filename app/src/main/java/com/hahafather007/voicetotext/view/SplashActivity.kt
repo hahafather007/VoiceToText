@@ -1,5 +1,6 @@
 package com.hahafather007.voicetotext.view
 
+import android.Manifest.permission.RECORD_AUDIO
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Activity
 import android.content.Intent
@@ -17,7 +18,9 @@ class SplashActivity : Activity(), RxController {
 
         setContentView(R.layout.activity_splash)
 
-        RxPermissions(this).request(WRITE_EXTERNAL_STORAGE)
+        RxPermissions(this)
+                .request(WRITE_EXTERNAL_STORAGE,
+                        RECORD_AUDIO)
                 .doOnNext {
                     startActivity(Intent(this, HomeActivity::class.java))
                 }

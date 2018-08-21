@@ -163,8 +163,10 @@ class VoiceHolder : RxController {
                     wavToMp3()
                 }
                 .doOnError {
+                    it.printStackTrace()
 
                     fileName = ""
+                    loading.onNext(false)
                 }
                 .doFinally { rxComposite.clear() }
                 .subscribe()

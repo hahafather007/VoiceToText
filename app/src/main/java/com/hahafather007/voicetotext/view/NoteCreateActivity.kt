@@ -236,7 +236,7 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
         })
     }
 
-    fun playOrPauseMusic() {
+    private fun playOrPauseMusic() {
         if (!recordPlaying) {
             if (hasPlayed) {
                 continueMusic()
@@ -287,7 +287,6 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
     }
 
     companion object {
-
         fun intentOfNote(context: Context, id: Long, title: String): Intent {
             val intent = Intent(context, NoteCreateActivity::class.java)
             intent.putExtra(EXTRA_ID, id)

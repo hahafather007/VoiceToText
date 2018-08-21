@@ -42,6 +42,8 @@
             android:background="#f7f7f7"
             android:clipToPadding="false"
             android:gravity="top"
+            android:hint="@string/text_tap_to_start"
+            android:inputType="text"
             android:paddingEnd="16dp"
             android:paddingStart="16dp"
             android:text="@={viewModel.noteText}"
