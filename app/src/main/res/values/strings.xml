@@ -4,4 +4,20 @@
     <string name="text_ask_delete">确定要删除这条笔记？</string>
     <string name="text_cancel">取消</string>
     <string name="text_enter">确定</string>
+    <string name="text_tap_to_cancel_recording">录音中，点击停止</string>
+    <string name="text_no_title">标题不能为空，请输入标题！！！</string>
+    <string name="text_stop_recording">是否结束录音？</string>
+    <string name="text_give_up_save">之前编辑的内容还未保存，真的要放弃保存吗？</string>
+    <string name="text_diaolg_stop_recording">当前正在录音，要结束录音并退出吗？</string>
+    <string name="text_title_save_hint">如：Android组3月1日会议</string>
+    <string name="text_title_save">输入标题</string>
+    <string name="text_dialog_choose_share">选择希望的分享方式</string>
+    <string name="text_text_only">仅文字</string>
+    <string name="text_file_only">仅录音</string>
+    <string name="title_dialog">提示</string>
+    <string name="text_save_over">已保存！！！</string>
+    <string name="text_save_error">保存失败，请检查网络</string>
+    <string name="test_network_error">网络似乎有些不太稳定~</string>
+    <string name="text_keep_screen_on">录音过程请务必让屏幕处于亮屏状态，防止被系统误杀！！！</string>
+    <string name="text_say_nothing">你好像什么都没有说</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.hahafather007.voicetotext.view
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.support.v7.app.AppCompatActivity
@@ -29,6 +30,7 @@ class HomeActivity : AppCompatActivity(), RxController {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         binding.activity = this
         binding.viewModel = viewModel
+        setSupportActionBar(binding.toolbar)
 
         addChangeListener()
     }
@@ -54,9 +56,7 @@ class HomeActivity : AppCompatActivity(), RxController {
     }
 
     fun openNote(id: Long, title: String) {
-
-
-//            startActivity(NoteCreateActivity.intentOfNote(getContext(), id, title))
+        startActivity(NoteCreateActivity.intentOfNote(this, id, title))
     }
 
     fun readyDelete(note: Note) {
@@ -66,7 +66,6 @@ class HomeActivity : AppCompatActivity(), RxController {
     }
 
     fun newsNote() {
-
-//            startActivity(Intent(this, NoteCreateActivity::class.java))
+        startActivity(Intent(this, NoteCreateActivity::class.java))
     }
 }

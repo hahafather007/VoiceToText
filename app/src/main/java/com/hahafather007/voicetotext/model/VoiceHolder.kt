@@ -15,6 +15,7 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
 import java.io.File
+import java.io.FileNotFoundException
 import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
@@ -48,7 +49,7 @@ class VoiceHolder : RxController {
     val volume: Subject<Int> = PublishSubject.create()
     val loading: Subject<Boolean> = PublishSubject.create()
 
-    private var mAsr: SpeechRecognizer = SpeechRecognizer.createRecognizer(VoiceApp.appContext, null)
+    private val mAsr = SpeechRecognizer.createRecognizer(VoiceApp.appContext, null)
     /**
      * 识别监听器
      */
@@ -185,7 +186,11 @@ class VoiceHolder : RxController {
                 "/VoiceToText/录音/${System.currentTimeMillis()}.wav"
 
         //合并文件的名字为设备号+系统当前时间
-        WavMergeUtil.mergeWav(files, File(fileName))
+        try {
+            WavMergeUtil.mergeWav(files, File(fileName))
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        }
 
         //删除缓存文件
         FileDeleteUtil.deleteDirectory("${Environment.getExternalStorageDirectory()}" +

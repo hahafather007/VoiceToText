@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.hahafather007.voicetotext.viewmodel.NoteCreateViewModel" />
+
+        <variable
+            name="activity"
+            type="com.hahafather007.voicetotext.view.NoteCreateActivity" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="#f7f7f7"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/actionBarSize"
+                android:background="@color/colorPrimary" />
+        </android.support.design.widget.AppBarLayout>
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#f7f7f7"
+            android:clipToPadding="false"
+            android:gravity="top"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:text="@={viewModel.noteText}"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/lineView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+            tools:text="这篇文章主要给大家介绍了关于如何更改Dialog的标题与按钮颜色的相关资料，文中通过示例代码介绍的非常详细，对大家的学习或者工作具有一定的参考学习价值，需要的朋友可以参考借鉴，下面跟着小编来一起学习学习吧。" />
+
+        <View
+            android:id="@+id/lineView"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e4e4e4"
+            app:layout_constraintBottom_toTopOf="@id/waveView" />
+
+        <com.hahafather007.voicetotext.widget.WaveformView
+            android:id="@+id/waveView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#f0f0f0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:visible="@{viewModel.recording}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@mipmap/ic_recording"
+            android:drawableStart="@mipmap/ic_recording"
+            android:onClick="@{() -> activity.startOrStopRecord()}"
+            android:padding="10dp"
+            android:text="@string/text_tap_to_cancel_recording"
+            android:textColor="#87CEFA"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:visible="@{viewModel.recording}" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -14,18 +14,32 @@
             type="com.hahafather007.voicetotext.view.HomeActivity" />
     </data>
 
-    <FrameLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#f7f7f7">
 
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/actionBarSize"
+                android:background="@color/colorPrimary" />
+        </android.support.design.widget.AppBarLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             app:itemLayout="@{@layout/item_voice_note}"
             app:items="@{viewModel.notes}"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
             app:onBindItem="@{activity::onBindItem}"
             tools:listitem="@layout/item_voice_note" />
 
@@ -38,6 +52,8 @@
             android:layout_marginRight="32dp"
             android:onClick="@{() -> activity.newsNote()}"
             android:src="@drawable/btn_plus"
-            app:backgroundTint="#1C86EE" />
-    </FrameLayout>
+            app:backgroundTint="#1C86EE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 </layout>
