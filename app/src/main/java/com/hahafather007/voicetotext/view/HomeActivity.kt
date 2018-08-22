@@ -44,6 +44,9 @@ class HomeActivity : AppCompatActivity(), RxController {
         onCleared()
     }
 
+    override fun onBackPressed() {
+        moveTaskToBack(false)
+    }
 
     private fun addChangeListener() {
         viewModel.deleteOver

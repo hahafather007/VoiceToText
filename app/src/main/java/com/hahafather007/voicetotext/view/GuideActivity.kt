@@ -33,6 +33,10 @@ class GuideActivity : Activity() {
         VoicePref.isFirst = false
     }
 
+    override fun onBackPressed() {
+        moveTaskToBack(false)
+    }
+
     private fun initPager() {
         val pagers = (0..2).map {
             val img = ImageView(binding.viewPager.context)

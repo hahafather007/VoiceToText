@@ -1,17 +1,25 @@
 package com.hahafather007.voicetotext.mutil;
 
 
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.os.*;
-import android.view.*;
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+import android.view.Window;
+import android.widget.Toast;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 
-import android.widget.*;
+import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 
 public class MLMain extends Activity {
     String urls = "";
@@ -25,7 +33,11 @@ public class MLMain extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         // TODO: Implement this method
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //去除标题栏
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //去除状态栏
+        getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
 
         View i = new View(this);
         i.setBackground(new BitmapDrawable(setB()));
