@@ -6,6 +6,7 @@ import android.content.Context
 import cafe.adriel.androidaudioconverter.AndroidAudioConverter
 import cafe.adriel.androidaudioconverter.callback.ILoadCallback
 import cn.jpush.android.api.JPushInterface
+import com.chibatching.kotpref.Kotpref
 import com.hahafather007.voicetotext.BuildConfig.DEBUG
 import com.hahafather007.voicetotext.utils.log
 import com.iflytek.cloud.SpeechConstant
@@ -35,6 +36,7 @@ class VoiceApp : Application() {
         })
         JPushInterface.init(this)
         JPushInterface.setDebugMode(DEBUG)
+        Kotpref.init(this)
     }
 
     override fun onTerminate() {

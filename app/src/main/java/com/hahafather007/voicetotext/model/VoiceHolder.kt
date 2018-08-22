@@ -83,7 +83,7 @@ class VoiceHolder : RxController {
                     val cacheFile = File("${Environment.getExternalStorageDirectory()}" +
                             "/VoiceToText/录音/缓存/${times - 1}.wav")
 
-                    Observable.interval(16, TimeUnit.MILLISECONDS)
+                    Observable.interval(10, TimeUnit.MILLISECONDS)
                             .filter { cacheFile.exists() }
                             .disposable(this@VoiceHolder)
                             .computeSwitch()
@@ -152,7 +152,7 @@ class VoiceHolder : RxController {
         val cacheFile = File("${Environment.getExternalStorageDirectory()}" +
                 "/VoiceToText/录音/缓存/${times - 1}.wav")
 
-        Observable.interval(16, TimeUnit.MILLISECONDS)
+        Observable.interval(10, TimeUnit.MILLISECONDS)
                 .filter { cacheFile.exists() }
                 .flatMap { Observable.just(decodeFile()) }
                 .disposable(this)
@@ -240,7 +240,7 @@ class VoiceHolder : RxController {
             val cacheFile = File("${Environment.getExternalStorageDirectory()}" +
                     "/VoiceToText/录音/缓存/${times - 1}.wav")
 
-            Observable.interval(16, TimeUnit.MILLISECONDS)
+            Observable.interval(10, TimeUnit.MILLISECONDS)
                     .filter { cacheFile.exists() }
                     .disposable(this)
                     .computeSwitch()
