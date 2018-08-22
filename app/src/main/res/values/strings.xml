@@ -21,4 +21,5 @@
     <string name="text_keep_screen_on">录音过程请务必让屏幕处于亮屏状态，防止被系统误杀！！！</string>
     <string name="text_say_nothing">你好像什么都没有说</string>
     <string name="text_tap_to_start">点击右上角"话筒"图标开始进行文字转写</string>
+    <string name="text_no_item">当前还没有任何笔记\n（点击右下角\"+\"按钮创建）</string>
 </resources>

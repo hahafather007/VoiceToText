@@ -43,6 +43,19 @@
             app:onBindItem="@{activity::onBindItem}"
             tools:listitem="@layout/item_voice_note" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/text_no_item"
+            android:textColor="#33000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visible="@{viewModel.notes.isEmpty}" />
+
         <android.support.design.widget.FloatingActionButton
             android:layout_width="56dp"
             android:layout_height="56dp"
