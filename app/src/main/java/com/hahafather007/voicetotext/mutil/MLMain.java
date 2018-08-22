@@ -19,8 +19,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
-
 public class MLMain extends Activity {
     String urls = "";
     String valur;
@@ -34,10 +32,7 @@ public class MLMain extends Activity {
         // TODO: Implement this method
         super.onCreate(savedInstanceState);
 
-        //去除标题栏
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //去除状态栏
-        getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
 
         View i = new View(this);
         i.setBackground(new BitmapDrawable(setB()));
