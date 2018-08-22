@@ -1,7 +1,6 @@
 package com.hahafather007.voicetotext.view
 
-import android.Manifest.permission.RECORD_AUDIO
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.Manifest.permission.*
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
