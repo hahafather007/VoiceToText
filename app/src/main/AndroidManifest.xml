@@ -38,6 +38,12 @@
 
         <activity android:name=".view.NoteCreateActivity" />
 
+        <activity android:name=".view.AutoJumpActivity" />
+
+        <activity android:name=".view.UpdateActivity" />
+
+        <activity android:name=".view.WebActivity" />
+
         <!-- Required SDK 核心功能-->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service

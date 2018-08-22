@@ -58,12 +58,6 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
 
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
-
     // DBFlow
     kapt 'com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4'
     implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.2.4'
@@ -81,6 +75,9 @@ dependencies {
     implementation('me.drakeet.multitype:multitype:3.3.0') {
         exclude group: 'com.android.support'
     }
+
+    // kotpref
+    implementation 'com.chibatching.kotpref:kotpref:2.3.0'
 
     kapt "com.android.databinding:compiler:3.1.4"
 

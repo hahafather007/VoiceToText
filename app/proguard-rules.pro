@@ -17,12 +17,6 @@
 -keep class * extends com.raizlabs.android.dbflow.config.DatabaseHolder { *; }
 -keepclassmembers class com.hello.model.db.** { *** *; }
 
-#OkHttp3
--dontwarn com.squareup.okhttp3.**
--keep class com.squareup.okhttp3.** { *;}
--keepattributes *Annotation*
--dontwarn javax.**
-
 #data类
 -keep public class com.hello.model.db.table.** {public private protected *;}
 
@@ -43,18 +37,6 @@
 #AIUI
 -dontwarn com.iflytek.**
 -keep class com.iflytek.** {*;}
-
-# Retrofit2
--dontwarn retrofit2.**
--keep class retrofit2.** { *; }
--keepattributes Signature
--keepattributes Exceptions
-
-# Okio
--dontwarn com.squareup.**
--dontwarn okio.**
--keep public class org.codehaus.* { *; }
--keep public class java.nio.* { *; }
 
 #WebView
 -keepclassmembers class fqcn.of.javascript.interface.for.webview {

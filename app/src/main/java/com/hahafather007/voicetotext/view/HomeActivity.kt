@@ -1,5 +1,6 @@
 package com.hahafather007.voicetotext.view
 
+import android.Manifest
 import android.content.DialogInterface
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -16,6 +17,7 @@ import com.hahafather007.voicetotext.utils.DialogUtil
 import com.hahafather007.voicetotext.utils.ToastUtil.showToast
 import com.hahafather007.voicetotext.utils.disposable
 import com.hahafather007.voicetotext.viewmodel.NoteViewModel
+import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.disposables.CompositeDisposable
 
 class HomeActivity : AppCompatActivity(), RxController {
@@ -66,6 +68,12 @@ class HomeActivity : AppCompatActivity(), RxController {
     }
 
     fun newsNote() {
-        startActivity(Intent(this, NoteCreateActivity::class.java))
+        RxPermissions(this)
+                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.RECORD_AUDIO)
+                .doOnNext {
+                    startActivity(Intent(this, NoteCreateActivity::class.java))
+                }
+                .subscribe()
     }
 }

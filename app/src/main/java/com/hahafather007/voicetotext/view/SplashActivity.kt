@@ -1,13 +1,15 @@
 package com.hahafather007.voicetotext.view
 
-import android.Manifest.permission.*
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import com.hahafather007.voicetotext.R
 import com.hahafather007.voicetotext.common.RxController
-import com.tbruyelle.rxpermissions2.RxPermissions
+import com.hahafather007.voicetotext.utils.asyncSwitch
+import com.hahafather007.voicetotext.utils.disposable
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import java.util.concurrent.TimeUnit
 
 class SplashActivity : Activity(), RxController {
     override val rxComposite = CompositeDisposable()
@@ -17,11 +19,11 @@ class SplashActivity : Activity(), RxController {
 
         setContentView(R.layout.activity_splash)
 
-        RxPermissions(this)
-                .request(WRITE_EXTERNAL_STORAGE,
-                        RECORD_AUDIO)
+        Observable.timer(1000, TimeUnit.MILLISECONDS)
+                .asyncSwitch()
+                .disposable(this)
                 .doOnNext {
-                    startActivity(Intent(this, HomeActivity::class.java))
+                    startActivity(Intent(this, AutoJumpActivity::class.java))
                 }
                 .subscribe()
 
