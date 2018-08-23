@@ -22,20 +22,22 @@ object MusicUtil {
         player.setAudioStreamType(AudioManager.STREAM_MUSIC)
 
         //异步进行音乐播放，以免阻塞线程
-        Observable.just(url)
-                .map {
-                    player.reset()
-                    player.setDataSource(it)
-                    player.setOnCompletionListener { listener?.complete() }
-                    player.setOnErrorListener { _, _, _ ->
-                        listener?.error()
-                        false
-                    }
-                    player.prepare()
-                    player
-                }
-                .asyncSwitch()
-                .subscribe(MediaPlayer::start)
+        disposable.add(
+                Observable.just(url)
+                        .map {
+                            player.reset()
+                            player.setDataSource(it)
+                            player.setOnCompletionListener { listener?.complete() }
+                            player.setOnErrorListener { _, _, _ ->
+                                listener?.error()
+                                false
+                            }
+                            player.prepare()
+                            player
+                        }
+                        .asyncSwitch()
+                        .subscribe(MediaPlayer::start)
+        )
     }
 
     @JvmStatic

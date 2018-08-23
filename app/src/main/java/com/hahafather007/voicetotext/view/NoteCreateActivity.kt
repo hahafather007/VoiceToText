@@ -126,11 +126,17 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
         } else {
             //如果修改的内容保存了就直接退出，否则提醒
             if (hasSave) {
+                stopMusic()
+
                 super.onBackPressed()
             } else {
                 DialogUtil.showDialog(this, R.string.text_give_up_save,
                         R.string.text_cancel, R.string.text_enter, null,
-                        DialogInterface.OnClickListener { _, _ -> super.onBackPressed() })
+                        DialogInterface.OnClickListener { _, _ ->
+                            stopMusic()
+
+                            super.onBackPressed()
+                        })
             }
         }
     }
