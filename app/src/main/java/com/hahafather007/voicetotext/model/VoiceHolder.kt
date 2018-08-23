@@ -11,7 +11,6 @@ import com.hahafather007.voicetotext.utils.*
 import com.iflytek.cloud.*
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
 import java.io.File
@@ -79,24 +78,6 @@ class VoiceHolder : RxController {
 
                 if (speaking && speakTime >= 40) {
                     mAsr.stopListening()
-
-                    val cacheFile = File("${Environment.getExternalStorageDirectory()}" +
-                            "/VoiceToText/录音/缓存/${times - 1}.wav")
-
-                    Observable.interval(10, TimeUnit.MILLISECONDS)
-                            .filter { cacheFile.exists() }
-                            .disposable(this@VoiceHolder)
-                            .computeSwitch()
-                            .doOnNext {
-                                speakTime = 0
-
-                                if (speaking) {
-                                    startRecording()
-                                }
-
-                                rxComposite.clear()
-                            }
-                            .subscribe()
                 }
             }
 
@@ -111,31 +92,45 @@ class VoiceHolder : RxController {
             // 此回调表示：检测到了语音的尾端点，已经进入识别过程，不再接受语音输入（最大只能识别60秒）
             override fun onEndOfSpeech() {
                 "识别时间到".log()
-
-                continueRecording()
             }
 
             override fun onError(error: SpeechError?) {
                 "识别出错：${error?.errorCode}--->${error?.errorDescription}".logError()
-
-                continueRecording()
             }
         }
     }
 
     fun startRecording() {
-        mAsr.setParameter(SpeechConstant.ASR_AUDIO_PATH,
-                Environment.getExternalStorageDirectory().toString() + "/VoiceToText/录音/缓存/${times++}.wav")
+        rxComposite.clear()
+
+        val file = "${Environment.getExternalStorageDirectory()}/VoiceToText/录音/缓存/$times.wav"
+        mAsr.setParameter(SpeechConstant.ASR_AUDIO_PATH, file)
 
         speaking = true
 
         mAsr.startListening(listener)
 
         Observable.interval(1, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.computation())
                 .disposable(this)
                 .computeSwitch()
                 .doOnNext { speakTime++ }
+                .doOnSubscribe { speakTime = 0 }
+                .subscribe()
+
+        Observable.interval(10, TimeUnit.MILLISECONDS)
+                .filter {
+                    File("${Environment.getExternalStorageDirectory()}" +
+                            "/VoiceToText/录音/缓存/$times.wav").exists()
+                }
+                .filter { speaking }
+                .map { times++ }
+                .disposable(this)
+                .computeSwitch()
+                .doOnNext {
+                    "$file:${File(file).exists()}".log()
+
+                    startRecording()
+                }
                 .subscribe()
     }
 
@@ -150,25 +145,30 @@ class VoiceHolder : RxController {
         loading.onNext(true)
 
         val cacheFile = File("${Environment.getExternalStorageDirectory()}" +
-                "/VoiceToText/录音/缓存/${times - 1}.wav")
+                "/VoiceToText/录音/缓存/$times.wav")
+
+        var isStoped = false
 
         Observable.interval(10, TimeUnit.MILLISECONDS)
                 .filter { cacheFile.exists() }
+                .filter { !isStoped }
+                .map { isStoped = true }
                 .flatMap { Observable.just(decodeFile()) }
                 .disposable(this)
                 .computeSwitch()
                 .doOnNext {
-                    times = 0
-
                     wavToMp3()
+
+                    rxComposite.clear()
                 }
                 .doOnError {
                     it.printStackTrace()
 
                     fileName = ""
                     loading.onNext(false)
+
+                    rxComposite.clear()
                 }
-                .doFinally { rxComposite.clear() }
                 .subscribe()
     }
 
@@ -178,7 +178,7 @@ class VoiceHolder : RxController {
      * 将录音数据合并
      */
     private fun decodeFile() {
-        val files = (0 until times)
+        val files = (0 until times + 1)
                 .map {
                     File("${Environment.getExternalStorageDirectory()}" +
                             "/VoiceToText/录音/缓存/$it.wav")
@@ -227,36 +227,11 @@ class VoiceHolder : RxController {
     /**
      * 取消识别，无返回结果
      */
-    private fun cancelRecording() {
+    fun cancelRecording() {
         mAsr.cancel()
 
         speaking = false
     }
-
-    private fun continueRecording() {
-        if (speaking) {
-            mAsr.stopListening()
-
-            val cacheFile = File("${Environment.getExternalStorageDirectory()}" +
-                    "/VoiceToText/录音/缓存/${times - 1}.wav")
-
-            Observable.interval(10, TimeUnit.MILLISECONDS)
-                    .filter { cacheFile.exists() }
-                    .disposable(this)
-                    .computeSwitch()
-                    .doOnNext {
-                        speakTime = 0
-
-                        if (speaking) {
-                            startRecording()
-                        }
-
-                        rxComposite.clear()
-                    }
-                    .subscribe()
-        }
-    }
-
 
     override fun onCleared() {
         super.onCleared()

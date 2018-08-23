@@ -112,7 +112,7 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
             DialogUtil.showDialog(this, R.string.text_diaolg_stop_recording,
                     R.string.text_cancel, R.string.text_enter,
                     null, DialogInterface.OnClickListener { _, _ ->
-                viewModel.stopRecord()
+                viewModel.cancelRecord()
                 hasSave = true
 
                 super.onBackPressed()
