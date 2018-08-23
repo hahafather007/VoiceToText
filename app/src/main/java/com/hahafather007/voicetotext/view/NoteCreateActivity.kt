@@ -31,6 +31,9 @@ import com.hahafather007.voicetotext.viewmodel.NoteCreateViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_note_create.*
 import java.io.File
+import android.support.v4.content.ContextCompat.getSystemService
+import android.view.inputmethod.InputMethodManager
+
 
 class NoteCreateActivity : AppCompatActivity(), RxController {
     override val rxComposite = CompositeDisposable()
@@ -139,7 +142,7 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
             editText.setText(viewModel.getNoteTitle())
         }
         editText.setHint(R.string.text_title_save_hint)
-        editText.setHintTextColor(Color.argb(0x88, 0x00, 0x00, 0x00))
+        editText.setHintTextColor(Color.argb(0x66, 0x00, 0x00, 0x00))
 
         DialogUtil.showViewDialog(this, R.string.text_title_save, editText,
                 R.string.text_cancel, R.string.text_enter, null,
@@ -278,6 +281,10 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
     fun startOrStopRecord() {
         if (!viewModel.recording.get()) {
             viewModel.startRecord()
+
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(binding.editText.windowToken, 0)
+            binding.editText.clearFocus()
 
             DialogUtil.showDialog(this, R.string.text_keep_screen_on, null,
                     R.string.text_enter, null, null)
