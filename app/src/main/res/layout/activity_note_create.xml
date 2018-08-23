@@ -32,7 +32,8 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/actionBarSize"
-                android:background="@color/colorPrimary" />
+                android:background="@color/colorPrimary"
+                app:title="@string/text_new_note" />
         </android.support.design.widget.AppBarLayout>
 
         <EditText

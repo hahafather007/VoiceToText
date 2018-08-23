@@ -2,6 +2,7 @@
     <string name="app_name">VoiceToText</string>
     <string name="text_delete_over">已删除！！！</string>
     <string name="text_ask_delete">确定要删除这条笔记？</string>
+
     <string name="text_cancel">取消</string>
     <string name="text_enter">确定</string>
     <string name="text_tap_to_cancel_recording">录音中，点击停止</string>
@@ -22,6 +23,7 @@
     <string name="text_say_nothing">你好像什么都没有说</string>
     <string name="text_tap_to_start">点击右上角"话筒"图标开始进行文字转写</string>
     <string name="text_no_item">当前还没有任何笔记\n（点击右下角\"+\"按钮创建）</string>
+    <string name="text_new_note">新建笔记</string>
 
     <!--极光推送需要的string-->
     <string name="hello">Hello World, JPush!</string>
