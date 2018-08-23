@@ -73,6 +73,7 @@
                 android:layout_gravity="end"
                 android:layout_marginBottom="6dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@{LocalDateTime.parse(data.time).toString(`yyyy-MM-dd HH:mm:ss`)}"
                 android:textColor="#66000000"

@@ -1,10 +1,12 @@
 package com.hahafather007.voicetotext.view
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.Intent.EXTRA_TITLE
 import android.databinding.DataBindingUtil
+import android.graphics.Color
 import android.net.Uri
 import android.nfc.NfcAdapter.EXTRA_ID
 import android.os.Build
@@ -27,6 +29,7 @@ import com.hahafather007.voicetotext.utils.MusicUtil.playMusic
 import com.hahafather007.voicetotext.utils.MusicUtil.stopMusic
 import com.hahafather007.voicetotext.viewmodel.NoteCreateViewModel
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_note_create.*
 import java.io.File
 
 class NoteCreateActivity : AppCompatActivity(), RxController {
@@ -60,7 +63,7 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
         val title = intent.getStringExtra(EXTRA_TITLE)
 
         if (!title.isNullOrEmpty()) {
-            setTitle(title)
+            supportActionBar?.title = title
             menu?.getItem(3)?.isVisible = false
         } else {//如果是查看之前的note，则显示分享按钮，否者不显示
             (0..2).map {
@@ -136,6 +139,7 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
             editText.setText(viewModel.getNoteTitle())
         }
         editText.setHint(R.string.text_title_save_hint)
+        editText.setHintTextColor(Color.argb(0x88, 0x00, 0x00, 0x00))
 
         DialogUtil.showViewDialog(this, R.string.text_title_save, editText,
                 R.string.text_cancel, R.string.text_enter, null,
@@ -185,7 +189,13 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
                         }
                     }//分享录音文件
 
-                    startActivity(intent)
+                    try {
+                        startActivity(intent)
+                    } catch (e: ActivityNotFoundException) {
+                        e.printStackTrace()
+
+                        ToastUtil.showToast(this, R.string.text_fail_to_share)
+                    }
                 })
     }
 
@@ -193,7 +203,7 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
         viewModel.saveOver
                 .disposable(this)
                 .doOnNext {
-                    title = viewModel.getNoteTitle()
+                    supportActionBar?.title = viewModel.getNoteTitle()
                     intent.putExtra(EXTRA_TITLE, viewModel.getNoteTitle())
                     ToastUtil.showToast(this, R.string.text_save_over)
 
