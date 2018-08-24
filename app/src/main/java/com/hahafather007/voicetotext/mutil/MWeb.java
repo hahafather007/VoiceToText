@@ -1,16 +1,24 @@
 package com.hahafather007.voicetotext.mutil;
 
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.net.*;
-import android.os.*;
-import android.view.*;
-import android.webkit.*;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.Window;
+import android.webkit.DownloadListener;
+import android.webkit.WebBackForwardList;
+import android.webkit.WebHistoryItem;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
-import java.net.*;
-
-import android.widget.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class MWeb extends Activity {

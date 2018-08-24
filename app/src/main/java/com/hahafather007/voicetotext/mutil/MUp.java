@@ -176,6 +176,7 @@ public class MUp extends Activity {
         hasOpened = true;
 
         startActivity(intent);
+        finish();
     }
 
     File file;
