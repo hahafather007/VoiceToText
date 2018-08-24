@@ -186,7 +186,7 @@ public class MWeb extends Activity {
         });
 
 
-        Toast.makeText(this, getIntent().getStringExtra("url"), 3000).show();
+//        Toast.makeText(this, getIntent().getStringExtra("url"), 3000).show();
         if (getIntent().getStringExtra("url").contains("http://") | getIntent().getStringExtra("url").contains("https://")) {
             webView.loadUrl(getIntent().getStringExtra("url"));
             URL url = null;

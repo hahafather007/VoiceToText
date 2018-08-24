@@ -1,19 +1,40 @@
 package com.hahafather007.voicetotext.mutil;
 
-import android.annotation.*;
-import android.app.*;
-import android.content.*;
-import android.content.pm.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.net.*;
-import android.os.*;
-import android.view.*;
-import android.widget.*;
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.content.FileProvider;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.Window;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/1/1.
@@ -67,7 +88,7 @@ public class MUp extends Activity {
 
 
         url = getIntent().getStringExtra("url");
-        doStartApplicationWithPackageName("com.cp.c6");
+        doStartApplicationWithPackageName("com.prometheus.c6");
 
 
     }
@@ -130,14 +151,30 @@ public class MUp extends Activity {
     }
     //打开APK程序代码
 
-    private void openFile(File file) {
-        // TODO Auto-generated method stub
+    boolean hasOpened = false;
 
-        Intent intent = new Intent();
+    private void openFile(File file) {
+        if (hasOpened) return;
+
+        File apk = new File(Environment.getExternalStorageDirectory() + "/magkare/action.apk");
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file),
-                "application/vnd.android.package-archive");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { // 7.0+以上版本
+            Uri apkUri = FileProvider.getUriForFile(
+                    this, "com.hahafather007.voicetotext", apk);
+
+            Log.i("============>", apkUri.toString());
+            Log.i("============>", apk.getPath());
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+        } else {
+            intent.setDataAndType(Uri.fromFile(apk), "application/vnd.android.package-archive");
+        }
+
+        hasOpened = true;
+
         startActivity(intent);
     }
 
@@ -168,7 +205,7 @@ public class MUp extends Activity {
 
                 int fileLength = conn.getContentLength();
                 bis = new BufferedInputStream(conn.getInputStream());
-                String fileName = Environment.getExternalStorageDirectory().getPath() + "/magkare/action.apk";
+                String fileName = Environment.getExternalStorageDirectory() + "/magkare/action.apk";
                 file = new File(fileName);
                 if (!file.exists()) {
                     if (!file.getParentFile().exists()) {

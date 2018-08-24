@@ -3,7 +3,6 @@ package com.hahafather007.voicetotext.view
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.hahafather007.voicetotext.R
-import com.hahafather007.voicetotext.model.pref.VoicePref
 import com.hahafather007.voicetotext.mutil.MLMain
 
 class AutoJumpActivity : MLMain() {
