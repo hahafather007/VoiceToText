@@ -44,7 +44,7 @@ class VoiceApp : Application() {
         JPushInterface.init(this)
         JPushInterface.setDebugMode(DEBUG)
         val builder = BasicPushNotificationBuilder(this)
-        builder.statusBarDrawable = R.mipmap.ic_launcher
+        builder.statusBarDrawable = R.drawable.logo
         JPushInterface.setDefaultPushNotificationBuilder(builder)
 
         Kotpref.init(this)

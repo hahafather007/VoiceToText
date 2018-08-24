@@ -21,9 +21,9 @@
     <application
         android:name=".app.VoiceApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.AutoJumpActivity">
@@ -148,7 +148,7 @@
         <!-- Required. AppKey copied from Portal -->
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="a5a55a825ee8616d1f8dc1c3" />
+            android:value="c859ac933c36561863f86e0c" />
     </application>
 
 </manifest>

@@ -40,7 +40,7 @@ class GuideActivity : Activity() {
     private fun initPager() {
         val pagers = (0..2).map {
             val img = ImageView(binding.viewPager.context)
-            img.setImageResource(R.drawable.back)
+            img.setImageResource(R.drawable.splash)
             img.scaleType = ImageView.ScaleType.CENTER_CROP
 
             img

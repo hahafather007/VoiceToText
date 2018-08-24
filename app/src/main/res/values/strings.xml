@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VoiceToText</string>
+    <string name="app_name">时时计</string>
     <string name="text_delete_over">已删除！！！</string>
     <string name="text_ask_delete">确定要删除这条笔记？</string>
 

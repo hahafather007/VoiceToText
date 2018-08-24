@@ -9,6 +9,7 @@ import com.hahafather007.voicetotext.common.RxController
 import com.hahafather007.voicetotext.model.VoiceHolder
 import com.hahafather007.voicetotext.model.db.NotesHolder
 import com.hahafather007.voicetotext.model.db.table.Note
+import com.hahafather007.voicetotext.model.pref.VoicePref
 import com.hahafather007.voicetotext.utils.FileDeleteUtil
 import com.hahafather007.voicetotext.utils.asyncSwitch
 import com.hahafather007.voicetotext.utils.disposable
@@ -116,7 +117,15 @@ class NoteCreateViewModel : RxController {
 
     fun startRecord() {
         Observable.just("${Environment.getExternalStorageDirectory()}/VoiceToText/录音/缓存/")
-                .map { FileDeleteUtil.deleteDirectory(it) }
+                .map {
+                    if (VoicePref.isFirst) {
+                        VoicePref.isFirst = false
+
+                        return@map it
+                    } else {
+                        return@map FileDeleteUtil.deleteDirectory(it)
+                    }
+                }
                 .asyncSwitch()
                 .disposable(this)
                 .doOnNext {

@@ -1,5 +1,6 @@
 package com.hahafather007.voicetotext.view
 
+import android.Manifest
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.DialogInterface
@@ -33,6 +34,7 @@ import kotlinx.android.synthetic.main.activity_note_create.*
 import java.io.File
 import android.support.v4.content.ContextCompat.getSystemService
 import android.view.inputmethod.InputMethodManager
+import com.tbruyelle.rxpermissions2.RxPermissions
 
 
 class NoteCreateActivity : AppCompatActivity(), RxController {
@@ -286,14 +288,24 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
 
     fun startOrStopRecord() {
         if (!viewModel.recording.get()) {
-            viewModel.startRecord()
+            RxPermissions(this)
+                    .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.RECORD_AUDIO)
+                    .doOnNext {
+                        if (it) {
+                            viewModel.startRecord()
 
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(binding.editText.windowToken, 0)
-            binding.editText.clearFocus()
+                            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                            imm.hideSoftInputFromWindow(binding.editText.windowToken, 0)
+                            binding.editText.clearFocus()
 
-            DialogUtil.showDialog(this, R.string.text_keep_screen_on, null,
-                    R.string.text_enter, null, null)
+                            DialogUtil.showDialog(this, R.string.text_keep_screen_on, null,
+                                    R.string.text_enter, null, null)
+                        } else {
+                            ToastUtil.showToast(this, "请检查是否授予了录音和读写权限！")
+                        }
+                    }
+                    .subscribe()
         } else {
             DialogUtil.showDialog(this, R.string.text_stop_recording,
                     R.string.text_cancel, R.string.text_enter, null, DialogInterface.OnClickListener { _, _ ->

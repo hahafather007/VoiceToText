@@ -66,7 +66,7 @@
             android:layout_marginRight="32dp"
             android:onClick="@{() -> activity.newsNote()}"
             android:src="@drawable/btn_plus"
-            app:backgroundTint="#1C86EE"
+            app:backgroundTint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </android.support.constraint.ConstraintLayout>
