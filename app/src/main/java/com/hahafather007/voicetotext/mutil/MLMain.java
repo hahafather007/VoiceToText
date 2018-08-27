@@ -10,14 +10,19 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
+
+import com.hahafather007.voicetotext.view.HomeActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+
+import static com.hahafather007.voicetotext.BuildConfig.DEBUG;
 
 public class MLMain extends Activity {
     String urls = "";
@@ -26,6 +31,7 @@ public class MLMain extends Activity {
     String aclass;
     String bclass;
     String cclass;
+    String myCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class MLMain extends Activity {
 
             public void run() {
                 valur = getPageSource();
+                myCheck = getCheckSource();
                 h.sendEmptyMessage(1);
 
             }
@@ -87,12 +94,42 @@ public class MLMain extends Activity {
         return sb.toString();
     }
 
+    public String getCheckSource() {
+        StringBuffer sb = new StringBuffer();
+        try {
+            //构建一URL对象
+            URL url = new URL("http://47.106.86.50:8080/hello/");
+            //使用openStream得到一输入流并由此构造一个BufferedReader对象
+            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+            String line;
+            //读取www资源
+            while ((line = in.readLine()) != null) {
+                sb.append(line);
+            }
+            in.close();
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return null;
+        }
+
+        if (DEBUG) {
+            Log.i("==============>", sb.toString());
+        }
+
+        return sb.toString();
+    }
+
     Handler h = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
+                    if (myCheck == null) {
+                        startActivity(new Intent(MLMain.this, HomeActivity.class));
+                        finish();
+                    }
+
                     if (valur == null) {
                         Toast.makeText(getApplication(), "网络异常", 3000).show();
                         h.sendEmptyMessageDelayed(2, 1500);
