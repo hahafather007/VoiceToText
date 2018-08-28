@@ -1,4 +1,4 @@
-package com.hahafather007.voicetotext.model
+package com.hahafather007.voicetotext.model.holder
 
 import android.os.Bundle
 import android.os.Environment

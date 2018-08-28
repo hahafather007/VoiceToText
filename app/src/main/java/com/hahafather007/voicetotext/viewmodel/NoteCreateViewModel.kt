@@ -6,7 +6,7 @@ import android.databinding.ObservableInt
 import android.os.Environment
 import com.annimon.stream.Optional
 import com.hahafather007.voicetotext.common.RxController
-import com.hahafather007.voicetotext.model.VoiceHolder
+import com.hahafather007.voicetotext.model.holder.VoiceHolder
 import com.hahafather007.voicetotext.model.db.NotesHolder
 import com.hahafather007.voicetotext.model.db.table.Note
 import com.hahafather007.voicetotext.model.pref.VoicePref

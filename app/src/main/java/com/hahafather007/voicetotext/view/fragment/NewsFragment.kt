@@ -23,4 +23,8 @@ class NewsFragment : Fragment() {
 
 
     }
+
+    fun openNewsDetail(url: String) {
+        startActivity(WebViewActivity.intentOfUrl(context, url, getString(R.string.title_news_top)))
+    }
 }

@@ -4,4 +4,22 @@
     <color name="colorPrimaryDark">#fe5900</color>
     <color name="colorAccent">#ec642b</color>
     <color name="colorItem">#888888</color>
+    <color name="colorLineSpace">#f7f7f7</color>
+    <color name="colorTransLine">#f0f0f0</color>
+    <color name="colorLine">#e4e4e4</color>
+    <color name="colorTransparent">#00000000</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorTransWhite">#88ffffff</color>
+    <color name="colorRipple">#44666666</color>
+    <color name="colorTransBlack">#66000000</color>
+    <color name="colorTransBlack2">#88000000</color>
+    <color name="colorText">#333333</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorDarkBlue">#1174CD</color>
+    <color name="colorGhostWhite">#F8F8FF</color>
+    <color name="colorLightSkyBlue">#87CEFA</color>
+    <color name="colorRed">#FF0000</color>
+    <color name="colorGreen">#66CC00</color>
+    <color name="colorYellow">#FFCC00</color>
+    <color name="colorPink">#FFCCCC</color>
 </resources>
