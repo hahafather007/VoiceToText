@@ -2,7 +2,6 @@
     <string name="app_name">时时计</string>
     <string name="text_delete_over">已删除！！！</string>
     <string name="text_ask_delete">确定要删除这条笔记？</string>
-
     <string name="text_cancel">取消</string>
     <string name="text_enter">确定</string>
     <string name="text_tap_to_cancel_recording">录音中，点击停止</string>
@@ -27,6 +26,8 @@
     <string name="text_fail_to_share">分享失败！没有能分享的应用</string>
     <string name="text_item_hot">热点</string>
     <string name="text_item_note">笔记</string>
+    <string name="title_news_top">热点新闻</string>
+    <string name="refresh_finish">刷新完毕</string>
 
     <!--极光推送需要的string-->
     <string name="hello">Hello World, JPush!</string>

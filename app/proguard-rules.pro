@@ -13,12 +13,31 @@
 -keep class org.joda.time.** { *; }
 -keep interface org.joda.time.** { *; }
 
+# Retrofit2
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+
+# Okio
+-dontwarn com.squareup.**
+-dontwarn okio.**
+-keep public class org.codehaus.* { *; }
+-keep public class java.nio.* { *; }
+
+# OkHttp3
+-dontwarn com.squareup.okhttp3.**
+-keep class com.squareup.okhttp3.** { *;}
+-keepattributes *Annotation*
+-dontwarn javax.**
+
 #DBFlow
 -keep class * extends com.raizlabs.android.dbflow.config.DatabaseHolder { *; }
 -keepclassmembers class com.hello.model.db.** { *** *; }
 
 #data类
 -keep public class com.hello.model.db.table.** {public private protected *;}
+-keep public class com.hello.model.data.** {public private protected *;}
 
 # RxJava
 -dontwarn sun.misc.**
@@ -33,6 +52,13 @@
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
 -dontnote rx.internal.util.PlatformDependent
+
+#Gson
+-keep public class com.google.gson.**
+-keep public class com.google.gson.** {public private protected *;}
+-keep class sun.misc.Unsafe { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
 
 #AIUI
 -dontwarn com.iflytek.**

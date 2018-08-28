@@ -107,10 +107,10 @@ class NoteCreateActivity : AppCompatActivity(), RxController {
     override fun onDestroy() {
         super.onDestroy()
 
+        stopMusic()
+
         viewModel.onCleared()
         onCleared()
-//        stopMusic()
-
     }
 
     override fun onBackPressed() {

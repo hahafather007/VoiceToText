@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.constraint.ConstraintLayout
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.hahafather007.voicetotext.view.fragment.NewsFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.hahafather007.voicetotext.viewmodel.NewsViewModel" />
+    </data>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        app:onRefresh="@{() -> viewModel.refresh()}"
+        app:refreshing="@{viewModel.loading}">
 
-    </android.support.constraint.ConstraintLayout>
+        <com.scwang.smartrefresh.header.FunGameHitBlockHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fbfbfb"
+            app:fgvBackColor="@color/colorAccent"
+            app:fgvLeftColor="@color/colorWhite"
+            app:fgvMiddleColor="@color/colorWhite"
+            app:fgvRightColor="@color/colorLine" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:items="@{viewModel.newsList}"
+            app:itemLayout="@{@layout/item_news}"
+            app:onBindItem="@{fragment::onBindItem}"
+            tools:listitem="@layout/item_news" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </layout>

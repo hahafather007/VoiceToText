@@ -36,7 +36,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        val pagers = listOf(NewsFragment(), NoteFragment())
+        val pagers = listOf<Fragment>(NewsFragment(), NoteFragment())
 
         binding.viewPager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(p0: Int): Fragment {

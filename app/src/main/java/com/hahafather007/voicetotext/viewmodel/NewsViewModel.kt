@@ -2,6 +2,7 @@ package com.hahafather007.voicetotext.viewmodel
 
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
+import android.databinding.ObservableList
 import com.hahafather007.voicetotext.common.RxController
 import com.hahafather007.voicetotext.model.data.NewsData
 import com.hahafather007.voicetotext.model.service.NewsService
@@ -12,7 +13,7 @@ import io.reactivex.disposables.CompositeDisposable
 class NewsViewModel : RxController {
     override val rxComposite = CompositeDisposable()
 
-    var newsList = ObservableArrayList<NewsData>()
+    var newsList: ObservableList<NewsData> = ObservableArrayList()
     var loading = ObservableBoolean()
     var newsEnd = ObservableBoolean()
 
