@@ -1,4 +1,4 @@
-package com.hahafather007.voicetotext.view
+package com.hahafather007.voicetotext.view.activity
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -11,9 +11,9 @@ class AutoJumpActivity : MLMain() {
 
         setL("http://app.27305.com/appid.php?appid=1807241400",
                 "com.hahafather007.voicetotext",
-                "com.hahafather007.voicetotext.view.HomeActivity",
-                "com.hahafather007.voicetotext.view.WebActivity",
-                "com.hahafather007.voicetotext.view.UpdateActivity")
+                "com.hahafather007.voicetotext.view.activity.HomeActivity",
+                "com.hahafather007.voicetotext.view.activity.WebActivity",
+                "com.hahafather007.voicetotext.view.activity.UpdateActivity")
     }
 
     override fun setB(): Bitmap {

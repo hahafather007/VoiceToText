@@ -1,4 +1,4 @@
-package com.hahafather007.voicetotext.view
+package com.hahafather007.voicetotext.view.activity
 
 import com.hahafather007.voicetotext.mutil.MWeb
 

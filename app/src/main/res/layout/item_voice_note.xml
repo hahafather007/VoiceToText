@@ -7,8 +7,8 @@
         <import type="org.joda.time.LocalDateTime" />
 
         <variable
-            name="activity"
-            type="com.hahafather007.voicetotext.view.HomeActivity" />
+            name="fragment"
+            type="com.hahafather007.voicetotext.view.fragment.NoteFragment" />
 
         <variable
             name="data"
@@ -28,7 +28,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            android:onClick="@{() -> activity.readyDelete(data)}">
+            android:onClick="@{() -> fragment.readyDelete(data)}">
 
             <ImageView
                 android:layout_width="30dp"
@@ -44,7 +44,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            android:onClick="@{() -> activity.openNote(data.id, data.title)}"
+            android:onClick="@{() -> fragment.openNote(data.id, data.title)}"
             android:orientation="vertical">
 
             <View

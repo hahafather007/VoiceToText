@@ -28,7 +28,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.AutoJumpActivity">
+        <activity android:name=".view.activity.AutoJumpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,15 +36,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.HomeActivity" />
+        <activity android:name=".view.activity.HomeActivity" />
 
-        <activity android:name=".view.NoteCreateActivity" />
+        <activity android:name=".view.activity.NoteCreateActivity" />
 
-        <activity android:name=".view.UpdateActivity" />
+        <activity android:name=".view.activity.UpdateActivity" />
 
-        <activity android:name=".view.WebActivity" />
+        <activity android:name=".view.activity.WebActivity" />
 
-        <activity android:name=".view.GuideActivity" />
+        <activity android:name=".view.activity.GuideActivity" />
 
         <!--其他的配置项-->
         <provider

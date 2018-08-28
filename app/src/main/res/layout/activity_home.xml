@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.hahafather007.voicetotext.viewmodel.NoteViewModel" />
-
-        <variable
-            name="activity"
-            type="com.hahafather007.voicetotext.view.HomeActivity" />
-    </data>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
         android:background="#f7f7f7">
 
         <android.support.design.widget.AppBarLayout
@@ -33,41 +20,19 @@
                 android:background="@color/colorPrimary" />
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:itemLayout="@{@layout/item_voice_note}"
-            app:items="@{viewModel.notes}"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-            app:onBindItem="@{activity::onBindItem}"
-            tools:listitem="@layout/item_voice_note" />
+            app:layout_constraintBottom_toTopOf="@id/tabLayout"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/text_no_item"
-            android:textColor="#33000000"
-            android:textSize="18sp"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:visible="@{viewModel.notes.isEmpty}" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_gravity="end|bottom"
-            android:layout_marginBottom="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:onClick="@{() -> activity.newsNote()}"
-            android:src="@drawable/btn_plus"
-            app:backgroundTint="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:tabIndicatorHeight="0dp" />
     </android.support.constraint.ConstraintLayout>
 </layout>

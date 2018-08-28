@@ -6,7 +6,7 @@
 
         <variable
             name="activity"
-            type="com.hahafather007.voicetotext.view.GuideActivity" />
+            type="com.hahafather007.voicetotext.view.activity.GuideActivity" />
     </data>
 
     <android.support.constraint.ConstraintLayout

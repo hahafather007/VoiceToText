@@ -1,4 +1,4 @@
-package com.hahafather007.voicetotext.view
+package com.hahafather007.voicetotext.view.activity
 
 import android.Manifest
 import android.content.ActivityNotFoundException
@@ -30,9 +30,7 @@ import com.hahafather007.voicetotext.utils.MusicUtil.playMusic
 import com.hahafather007.voicetotext.utils.MusicUtil.stopMusic
 import com.hahafather007.voicetotext.viewmodel.NoteCreateViewModel
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_note_create.*
 import java.io.File
-import android.support.v4.content.ContextCompat.getSystemService
 import android.view.inputmethod.InputMethodManager
 import com.tbruyelle.rxpermissions2.RxPermissions
 

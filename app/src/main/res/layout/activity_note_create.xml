@@ -11,7 +11,7 @@
 
         <variable
             name="activity"
-            type="com.hahafather007.voicetotext.view.NoteCreateActivity" />
+            type="com.hahafather007.voicetotext.view.activity.NoteCreateActivity" />
     </data>
 
     <android.support.constraint.ConstraintLayout

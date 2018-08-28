@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.hahafather007.voicetotext.view.HomeActivity;
+import com.hahafather007.voicetotext.view.activity.HomeActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
