@@ -25,6 +25,8 @@
     <string name="text_no_item">当前还没有任何笔记\n（点击右下角\"+\"按钮创建）</string>
     <string name="text_new_note">新建笔记</string>
     <string name="text_fail_to_share">分享失败！没有能分享的应用</string>
+    <string name="text_item_hot">热点</string>
+    <string name="text_item_note">笔记</string>
 
     <!--极光推送需要的string-->
     <string name="hello">Hello World, JPush!</string>

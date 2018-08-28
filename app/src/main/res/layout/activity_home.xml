@@ -5,7 +5,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f7f7f7">
+        android:background="#fbfbfb">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -31,7 +31,7 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/colorPrimary"
+            android:background="#f7f7f7"
             app:layout_constraintBottom_toBottomOf="parent"
             app:tabIndicatorHeight="0dp" />
     </android.support.constraint.ConstraintLayout>
