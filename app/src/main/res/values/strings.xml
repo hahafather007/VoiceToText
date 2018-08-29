@@ -28,6 +28,7 @@
     <string name="text_item_note">笔记</string>
     <string name="title_news_top">热点新闻</string>
     <string name="refresh_finish">刷新完毕</string>
+    <string name="text_load_more">点击加载更多</string>
 
     <!--极光推送需要的string-->
     <string name="hello">Hello World, JPush!</string>

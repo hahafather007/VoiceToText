@@ -37,7 +37,7 @@ class NewsFragment : Fragment(), RxController {
         binding.fragment = this
         binding.viewModel = viewModel
 
-//        addChangeListener()
+        addChangeListener()
     }
 
     override fun onDestroy() {

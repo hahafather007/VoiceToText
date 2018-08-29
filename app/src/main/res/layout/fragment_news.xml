@@ -24,19 +24,46 @@
         <com.scwang.smartrefresh.header.FunGameHitBlockHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fbfbfb"
             app:fgvBackColor="@color/colorAccent"
             app:fgvLeftColor="@color/colorWhite"
             app:fgvMiddleColor="@color/colorWhite"
             app:fgvRightColor="@color/colorLine" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:items="@{viewModel.newsList}"
-            app:itemLayout="@{@layout/item_news}"
-            app:onBindItem="@{fragment::onBindItem}"
-            tools:listitem="@layout/item_news" />
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:layoutAnimation="@anim/news_list_anim"
+                    app:itemLayout="@{@layout/item_news}"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    app:onBindItem="@{fragment::onBindItem}"
+                    tools:listitem="@layout/item_news" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.loadMore()}"
+                    android:text="@string/text_load_more"
+                    android:textColor="@color/colorText"
+                    app:visible="@{!viewModel.newsEnd &amp; !viewModel.newsList.empty}" />
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </layout>

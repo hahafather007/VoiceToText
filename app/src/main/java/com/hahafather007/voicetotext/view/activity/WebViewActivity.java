@@ -14,6 +14,8 @@ import android.webkit.WebViewClient;
 import com.hahafather007.voicetotext.R;
 import com.hahafather007.voicetotext.databinding.ActivityWebviewBinding;
 
+import java.util.Objects;
+
 import static android.content.Intent.EXTRA_TITLE;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -33,6 +35,8 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_webview);
+        setSupportActionBar(binding.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setTitle(getIntent().getStringExtra(EXTRA_TITLE));
 
         binding.webView.setWebViewClient(new WebViewClient() {
