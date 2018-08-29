@@ -1,6 +1,5 @@
 package com.hahafather007.voicetotext.view.fragment
 
-import android.database.DatabaseUtils
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
@@ -12,9 +11,9 @@ import com.hahafather007.voicetotext.R
 import com.hahafather007.voicetotext.common.RxController
 import com.hahafather007.voicetotext.databinding.FragmentNewsBinding
 import com.hahafather007.voicetotext.databinding.ItemNewsBinding
+import com.hahafather007.voicetotext.model.data.NewsData
 import com.hahafather007.voicetotext.utils.RxField
 import com.hahafather007.voicetotext.utils.disposable
-import com.hahafather007.voicetotext.utils.log
 import com.hahafather007.voicetotext.view.activity.WebViewActivity
 import com.hahafather007.voicetotext.viewmodel.NewsViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -72,7 +71,7 @@ class NewsFragment : Fragment(), RxController {
         itemBinding.fragment = this
     }
 
-    fun openNewsDetail(url: String) {
-        startActivity(WebViewActivity.intentOfUrl(context, url, getString(R.string.title_news_top)))
+    fun openNewsDetail(data: NewsData) {
+        startActivity(WebViewActivity.intentOfUrl(context, data.url, data.title))
     }
 }

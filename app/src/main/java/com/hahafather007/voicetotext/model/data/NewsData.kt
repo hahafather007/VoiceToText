@@ -9,8 +9,3 @@ data class NewsData(val title: String,
                     val url: String,
                     @SerializedName("thumbnail_pic_s")
                     val image: String)
-
-data class NewsResponse(val result: Result) {
-    data class Result(@SerializedName("data")
-                      val newsList: List<NewsData>)
-}

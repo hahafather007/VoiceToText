@@ -7,6 +7,14 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword '965083'
+            storeFile file('/Users/father/appKey')
+            storePassword '965083'
+        }
+    }
     buildToolsVersion '28.0.1'
     compileSdkVersion 28
     defaultConfig {
@@ -16,6 +24,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
@@ -34,6 +43,8 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    productFlavors {
     }
 }
 
@@ -84,6 +95,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.6.1'
@@ -91,7 +103,6 @@ dependencies {
 
     // kotpref
     implementation 'com.chibatching.kotpref:kotpref:2.3.0'
-
     kapt "com.android.databinding:compiler:3.1.4"
 
     testImplementation 'junit:junit:4.12'

@@ -74,10 +74,12 @@ class HomeActivity : AppCompatActivity() {
                     0 -> {
                         tabNews?.selected = true
                         tabNote?.selected = false
+                        setTitle(R.string.title_news_top)
                     }
                     1 -> {
                         tabNews?.selected = false
                         tabNote?.selected = true
+                        setTitle(R.string.title_note_top)
                     }
                 }
             }

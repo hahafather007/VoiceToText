@@ -33,13 +33,13 @@
 
 #DBFlow
 -keep class * extends com.raizlabs.android.dbflow.config.DatabaseHolder { *; }
--keepclassmembers class com.hello.model.db.** { *** *; }
+-keepclassmembers class com.hahafather007.voicetotext.model.db.** { *** *; }
 
 #data类
--keep public class com.hello.model.db.table.** {public private protected *;}
--keep public class com.hello.model.data.** {public private protected *;}
+-keep public class com.hahafather007.voicetotext.model.db.table.** {public private protected *;}
+-keep public class com.hahafather007.voicetotext.model.data.** {public private protected *;}
 
-# RxJava
+#RxJava
 -dontwarn sun.misc.**
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
    long producerIndex;

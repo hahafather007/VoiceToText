@@ -2,6 +2,8 @@ package com.hahafather007.voicetotext.model.service
 
 import com.hahafather007.voicetotext.model.data.NewsData
 import com.hahafather007.voicetotext.model.data.NewsResponse
+import com.hahafather007.voicetotext.model.service.interceptor.AppHttpLoggingInterceptor
+import com.hahafather007.voicetotext.utils.log
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -18,7 +20,9 @@ class NewsService {
     private val api: NewsApi
 
     init {
-        val client = OkHttpClient.Builder().build()
+        val client = OkHttpClient.Builder()
+                .addInterceptor(AppHttpLoggingInterceptor())
+                .build()
 
         api = Retrofit.Builder()
                 .baseUrl(URL)
@@ -31,6 +35,11 @@ class NewsService {
 
     fun getNews(): Single<List<NewsData>> {
         return api.getNews()
+                .map {
+                    it.log()
+
+                    it
+                }
                 .map { it.result.newsList }
     }
 

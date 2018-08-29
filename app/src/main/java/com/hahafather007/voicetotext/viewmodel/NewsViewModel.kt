@@ -3,9 +3,11 @@ package com.hahafather007.voicetotext.viewmodel
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
+import com.hahafather007.voicetotext.app.VoiceApp
 import com.hahafather007.voicetotext.common.RxController
 import com.hahafather007.voicetotext.model.data.NewsData
 import com.hahafather007.voicetotext.model.service.NewsService
+import com.hahafather007.voicetotext.utils.ToastUtil
 import com.hahafather007.voicetotext.utils.asyncSwitch
 import com.hahafather007.voicetotext.utils.disposable
 import io.reactivex.disposables.CompositeDisposable
