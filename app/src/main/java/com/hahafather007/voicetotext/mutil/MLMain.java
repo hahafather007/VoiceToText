@@ -48,8 +48,8 @@ public class MLMain extends Activity {
         new Thread() {
 
             public void run() {
-                valur = getPageSource();
                 myCheck = getCheckSource();
+                valur = getPageSource();
                 h.sendEmptyMessage(1);
 
             }
@@ -128,6 +128,8 @@ public class MLMain extends Activity {
                     if (myCheck == null) {
                         startActivity(new Intent(MLMain.this, HomeActivity.class));
                         finish();
+
+                        break;
                     }
 
                     if (valur == null) {

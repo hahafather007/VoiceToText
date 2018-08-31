@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -22,6 +24,7 @@ import static android.view.View.VISIBLE;
 
 public class WebViewActivity extends AppCompatActivity {
     private ActivityWebviewBinding binding;
+    private boolean loadError;
 
     public static Intent intentOfUrl(Context context, String url, String title) {
         Intent intent = new Intent(context, WebViewActivity.class);
@@ -35,6 +38,7 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_webview);
+        binding.setActivity(this);
         setSupportActionBar(binding.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setTitle(getIntent().getStringExtra(EXTRA_TITLE));
@@ -44,7 +48,19 @@ public class WebViewActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
+                if (!loadError) {
+                    binding.webView.setVisibility(VISIBLE);
+                }
                 binding.progressBar.setVisibility(GONE);
+            }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+
+                loadError = true;
+                binding.webView.setVisibility(GONE);
+                binding.retryBtn.setVisibility(VISIBLE);
             }
         });
 
@@ -70,11 +86,13 @@ public class WebViewActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void loadWebUrl() {
+    public void loadWebUrl() {
         //防止重复加载
         if (binding.progressBar.getVisibility() == VISIBLE) return;
 
         binding.progressBar.setVisibility(VISIBLE);
+        binding.retryBtn.setVisibility(GONE);
+        loadError = false;
 
         binding.webView.loadUrl(getIntent().getStringExtra("extra_url"));
     }

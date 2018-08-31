@@ -21,6 +21,7 @@ class HomeActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         setSupportActionBar(binding.toolbar)
+        setTitle(R.string.title_news_top)
 
         initView()
     }

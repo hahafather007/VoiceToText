@@ -18,6 +18,7 @@ class NewsViewModel : RxController {
     var newsList: ObservableList<NewsData> = ObservableArrayList()
     var loading = ObservableBoolean()
     var newsEnd = ObservableBoolean()
+    var loadError = ObservableBoolean()
 
     //因为api服务器不支持加载更多，所以本地缓存实现假加载更多
     private var newsHolder: List<NewsData>? = null
@@ -42,8 +43,12 @@ class NewsViewModel : RxController {
                         newsEnd.set(false)
                         newsHolder = it
                     }
-                    .doOnSubscribe { loading.set(true) }
+                    .doOnSubscribe {
+                        loading.set(true)
+                        loadError.set(false)
+                    }
                     .doFinally { loading.set(false) }
+                    .doOnError { loadError.set(true) }
                     .subscribe()
         }
     }
