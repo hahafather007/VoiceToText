@@ -5,12 +5,7 @@ import android.app.Application
 import android.content.Context
 import cafe.adriel.androidaudioconverter.AndroidAudioConverter
 import cafe.adriel.androidaudioconverter.callback.ILoadCallback
-import cn.jpush.android.api.BasicPushNotificationBuilder
-import cn.jpush.android.api.DefaultPushNotificationBuilder
-import cn.jpush.android.api.JPushInterface
 import com.chibatching.kotpref.Kotpref
-import com.hahafather007.voicetotext.BuildConfig.DEBUG
-import com.hahafather007.voicetotext.R
 import com.hahafather007.voicetotext.utils.log
 import com.iflytek.cloud.SpeechConstant
 import com.iflytek.cloud.SpeechUtility
@@ -40,12 +35,6 @@ class VoiceApp : Application() {
                 e.printStackTrace()
             }
         })
-
-        JPushInterface.init(this)
-        JPushInterface.setDebugMode(DEBUG)
-        val builder = BasicPushNotificationBuilder(this)
-        builder.statusBarDrawable = R.drawable.logo
-        JPushInterface.setDefaultPushNotificationBuilder(builder)
 
         Kotpref.init(this)
     }

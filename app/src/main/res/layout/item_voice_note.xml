@@ -8,7 +8,7 @@
 
         <variable
             name="fragment"
-            type="com.hahafather007.voicetotext.view.fragment.NoteFragment" />
+            type="com.hahafather007.voicetotext.view.NoteActivity" />
 
         <variable
             name="data"

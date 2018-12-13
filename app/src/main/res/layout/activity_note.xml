@@ -10,14 +10,28 @@
             type="com.hahafather007.voicetotext.viewmodel.NoteViewModel" />
 
         <variable
-            name="fragment"
-            type="com.hahafather007.voicetotext.view.fragment.NoteFragment" />
+            name="activity"
+            type="com.hahafather007.voicetotext.view.NoteActivity" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/actionBarSize"
+                android:background="@color/colorPrimary"
+                app:title="@string/app_name" />
+        </android.support.design.widget.AppBarLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -27,7 +41,7 @@
             app:items="@{viewModel.notes}"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
-            app:onBindItem="@{fragment::onBindItem}"
+            app:onBindItem="@{activity::onBindItem}"
             tools:listitem="@layout/item_voice_note" />
 
         <TextView
@@ -47,10 +61,10 @@
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="end|bottom"
-            android:layout_marginBottom="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
-            android:onClick="@{() -> fragment.newsNote()}"
+            android:layout_marginBottom="32dp"
+            android:onClick="@{() -> activity.newsNote()}"
             android:src="@drawable/btn_plus"
             app:backgroundTint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"

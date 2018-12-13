@@ -1,4 +1,4 @@
-package com.hahafather007.voicetotext.view.activity
+package com.hahafather007.voicetotext.view
 
 import android.Manifest
 import android.content.ActivityNotFoundException

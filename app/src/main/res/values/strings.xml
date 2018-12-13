@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">时时计</string>
+    <string name="app_name">哈喽笔记</string>
     <string name="text_delete_over">已删除！！！</string>
     <string name="text_ask_delete">确定要删除这条笔记？</string>
     <string name="text_cancel">取消</string>
@@ -24,26 +24,4 @@
     <string name="text_no_item">当前还没有任何笔记\n（点击右下角\"+\"按钮创建）</string>
     <string name="text_new_note">新建笔记</string>
     <string name="text_fail_to_share">分享失败！没有能分享的应用</string>
-    <string name="text_item_hot">热点</string>
-    <string name="text_item_note">笔记</string>
-    <string name="text_retry">重新加载</string>
-    <string name="refresh_finish">刷新完毕</string>
-    <string name="text_load_more">点击加载更多</string>
-    <string name="title_news_top">时时新闻</string>
-    <string name="title_note_top">时时笔记</string>
-
-    <!--极光推送需要的string-->
-    <string name="hello">Hello World, JPush!</string>
-    <string name="tag_hint">Tag can be number, alphabet, underscore, Chinese. Use , to split many tags.</string>
-    <string name="alias_hint">Alias can be number, alphabet, underscore, Chinese.</string>
-    <string name="mobilenumber_hint">The phone number can only start with a "+" or a number,other can only contain "-" and Numbers</string>
-    <string name="style_hint">style should be number</string>
-    <string name="error_style_empty">style cannot be empty</string>
-    <string name="error_alias_empty">alias cannot be empty</string>
-    <string name="error_tag_empty">tag cannot be empty</string>
-    <string name="error_tag_gs_empty">Invalid format</string>
-    <string name="mobilenumber_empty_guide">will clear last set phone number</string>
-    <string name="error_network">Failed to init due to network exception.</string>
-    <string name="logining">Running in background. Please see log.</string>
-    <string name="setting_su">Succeed to set</string>
 </resources>

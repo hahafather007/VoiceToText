@@ -1,4 +1,4 @@
-package com.hahafather007.voicetotext.view.fragment
+package com.hahafather007.voicetotext.view
 
 import android.Manifest
 import android.content.DialogInterface
@@ -6,38 +6,30 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.app.AppCompatActivity
 import com.hahafather007.voicetotext.R
 import com.hahafather007.voicetotext.common.RxController
-import com.hahafather007.voicetotext.databinding.FragmentNoteBinding
+import com.hahafather007.voicetotext.databinding.ActivityNoteBinding
 import com.hahafather007.voicetotext.databinding.ItemVoiceNoteBinding
 import com.hahafather007.voicetotext.model.db.table.Note
 import com.hahafather007.voicetotext.utils.DialogUtil
 import com.hahafather007.voicetotext.utils.ToastUtil.showToast
 import com.hahafather007.voicetotext.utils.disposable
-import com.hahafather007.voicetotext.view.activity.NoteCreateActivity
 import com.hahafather007.voicetotext.viewmodel.NoteViewModel
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.disposables.CompositeDisposable
 
-class NoteFragment : Fragment(), RxController {
+class NoteActivity : AppCompatActivity(), RxController {
     override val rxComposite = CompositeDisposable()
 
     private val viewModel = NoteViewModel()
-    private lateinit var binding: FragmentNoteBinding
+    private lateinit var binding: ActivityNoteBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_note, container, false)
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding = DataBindingUtil.bind(view)!!
-        binding.fragment = this
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_note)
+        binding.activity = this
         binding.viewModel = viewModel
 
         addChangeListener()
@@ -53,7 +45,7 @@ class NoteFragment : Fragment(), RxController {
     private fun addChangeListener() {
         viewModel.deleteOver
                 .disposable(this)
-                .doOnNext { showToast(context, "已删除！！！") }
+                .doOnNext { showToast(this, "已删除！！！") }
                 .subscribe()
     }
 
@@ -63,21 +55,21 @@ class NoteFragment : Fragment(), RxController {
     }
 
     fun openNote(id: Long, title: String) {
-        startActivity(NoteCreateActivity.intentOfNote(context!!, id, title))
+        startActivity(NoteCreateActivity.intentOfNote(this, id, title))
     }
 
     fun readyDelete(note: Note) {
-        DialogUtil.showDialog(context!!, R.string.text_ask_delete,
+        DialogUtil.showDialog(this, R.string.text_ask_delete,
                 R.string.text_cancel, R.string.text_enter, null,
                 DialogInterface.OnClickListener { _, _ -> viewModel.deleteNote(note) })
     }
 
     fun newsNote() {
-        RxPermissions(activity!!)
+        RxPermissions(this)
                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.RECORD_AUDIO)
                 .doOnNext {
-                    startActivity(Intent(context, NoteCreateActivity::class.java))
+                    startActivity(Intent(this, NoteCreateActivity::class.java))
                 }
                 .subscribe()
     }

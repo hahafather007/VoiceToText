@@ -1,23 +1,14 @@
 package com.hahafather007.voicetotext.common;
 
 import android.databinding.BindingAdapter;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.annimon.stream.IntPair;
 import com.annimon.stream.Stream;
 import com.annimon.stream.function.Function;
-import com.bumptech.glide.Glide;
-import com.hahafather007.voicetotext.R;
-import com.hahafather007.voicetotext.utils.ToastUtil;
-import com.hahafather007.voicetotext.widget.GlideApp;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.List;
-
 
 import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.MultiTypeAdapter;
@@ -30,16 +21,6 @@ public class Binding {
         } else {
             view.setVisibility(View.GONE);
         }
-    }
-
-    @BindingAdapter("android:src")
-    public static void setImage(ImageView view, String img) {
-        Glide.with(view.getContext()).load(img).into(view);
-    }
-
-    @BindingAdapter({"android:src", "placeholder"})
-    public static void setImageWithHolder(ImageView view, String img, Drawable holder) {
-        GlideApp.with(view.getContext()).load(img).placeholder(holder).into(view);
     }
 
     @BindingAdapter("items")
@@ -103,20 +84,6 @@ public class Binding {
 
         int getLayoutId() {
             return layoutId;
-        }
-    }
-
-    @BindingAdapter("onRefresh")
-    public static void setOnRefreshListener(SmartRefreshLayout view,
-                                            OnRefreshListener listener) {
-        view.setOnRefreshListener(listener);
-    }
-
-    @BindingAdapter("refreshing")
-    public static void setIfRefresh(SmartRefreshLayout view, boolean refreshing) {
-        if (!refreshing) {
-            view.finishRefresh();
-            ToastUtil.showToast(view.getContext(), R.string.refresh_finish);
         }
     }
 }
